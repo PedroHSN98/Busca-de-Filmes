@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Busca de Filmes - OMDb</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<div class="container">
+    <h1>🎬 Busca de Filmes</h1>
+    <form method="POST">
+        <input type="text" name="titulo" placeholder="Digite o nome do filme" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if erro %}
+        <p style="color: red;">{{ erro }}</p>
+    {% endif %}
+
+    {% if filme %}
+        <div class="resultado">
+            <h2>{{ filme.Title }} ({{ filme.Year }})</h2>
+            <p><strong>Diretor:</strong> {{ filme.Director }}</p>
+            <p><strong>Atores:</strong> {{ filme.Actors }}</p>
+            <p><strong>IMDb:</strong> {{ filme.imdbRating }}</p>
+            <p><strong>Sinopse:</strong> {{ filme.Plot }}</p>
+            <img src="{{ filme.Poster }}" alt="Poster do filme">
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
